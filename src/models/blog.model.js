@@ -1,19 +1,20 @@
 const mongoose = require('mongoose')
 
 
-const BlogSchema = new mongoose.Schema({ 
+const BlogSchema = new mongoose.Schema(
+    { 
     title: String,
     body: String,
     postTime: Date,
     tags: Array,
     author: {
-        type: mongoose.SchemaType.ObjectId,
+        type: mongoose.SchemaTypes.ObjectId,
         ref: "user",
         required: true
+    }
     },
-    timestamps: true
-
-});
+    {timestamps: true}
+);
 
 // https://stackoverflow.com/questions/18001478/referencing-another-schema-in-mongoose
 

@@ -5,19 +5,19 @@ const CommentSchema = new mongoose.Schema({
     body: String,
     postTime: Date,
     author: {
-        type: mongoose.SchemaType.ObjectId,
+        type: mongoose.SchemaTypes.ObjectId,
         ref: "user",
         required: true
 
     },
     bolgId: {
-        type: mongoose.SchemaType.ObjectId,
+        type: mongoose.SchemaTypes.ObjectId,
         ref: "blog",
         required: true
+    },   
     },
-    timestamps: true
-    
-});
+    {timestamps: true}
+);
 
 
 
