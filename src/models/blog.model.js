@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 
-const CommentSchema = new mongoose.Schema({ 
+const BlogSchema = new mongoose.Schema({ 
     title: String,
     body: String,
     postTime: Date,
@@ -20,4 +20,4 @@ const CommentSchema = new mongoose.Schema({
 //https://dev.to/mkilmer/how-create-relationships-with-mongoose-and-node-js-with-real-example-43ei
 
 
-module.exports = mongoose.model('comment',CommentSchema)
+module.exports = mongoose.model('blog',BlogSchema)

@@ -17,8 +17,8 @@
   **User:**
    -  **username**: string
    -  **email**: date
-   - **amateur** : / Reference to users
-   - **skills** : array
+   - **photo** : / Reference to users
+   - **skills** : array  // added next time
 
 
 

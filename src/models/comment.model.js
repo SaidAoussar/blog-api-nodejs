@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 
-const userSchema = new mongoose.Schema({ 
+const CommentSchema = new mongoose.Schema({ 
     body: String,
     postTime: Date,
     author: {
@@ -21,4 +21,4 @@ const userSchema = new mongoose.Schema({
 
 
 
-module.exports = mongoose.model('user',userSchema)
+module.exports = mongoose.model('comment',CommentSchema)
