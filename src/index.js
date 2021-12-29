@@ -3,6 +3,12 @@ const cors = require("cors")
 const morgan = require("morgan")
 const bodyParser = require("body-parser")
 const mongoose  = require("mongoose")
+// router
+const blogRouter = require("./routers/blog.router")
+
+// data 
+const data = require('../insertData.js')
+
 
 
 const app = express()
@@ -19,7 +25,6 @@ app.use(bodyParser.json())
 
 
 //mongodb://localhost:27017/
-
 mongoose.connect("mongodb://localhost:27017/blog-api-db",(err)=>{
     if(err){
         console.log(err)
@@ -35,11 +40,19 @@ app.get('/',(req,res)=>{
 
 })
 
-
 app.post('/',(req,res)=>{
     console.log(req.body)
     res.send({data: "the request is passed"})
 })
+
+// blog router
+
+app.use('/blog',blogRouter)
+
+
+
+
+
 
 
 
