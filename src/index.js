@@ -3,9 +3,15 @@ const cors = require("cors")
 const morgan = require("morgan")
 const bodyParser = require("body-parser")
 const mongoose  = require("mongoose")
+const dotenv = require("dotenv")
+
+
+//dotenv
+dotenv.config()
+
 // router
 const blogRouter = require("./routers/blog.router")
-
+const authRouter = require('./routers/auth.route')
 // data 
 const data = require('../insertData.js')
 
@@ -24,8 +30,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 
-//mongodb://localhost:27017/
-mongoose.connect("mongodb://localhost:27017/blog-api-db",(err)=>{
+//connect db
+mongoose.connect(process.env.DB_CONNECT,(err)=>{
     if(err){
         console.log(err)
         return
@@ -44,9 +50,9 @@ app.post('/',(req,res)=>{
     console.log(req.body)
     res.send({data: "the request is passed"})
 })
-
+//auth router
+app.use(authRouter)
 // blog router
-
 app.use('/blog',blogRouter)
 
 
