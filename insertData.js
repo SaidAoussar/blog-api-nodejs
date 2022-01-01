@@ -2,7 +2,8 @@
 const User = require("./src/models/user.model")
 const Blog = require("./src/models/blog.model")
 const Comment = require("./src/models/comment.model")
-const blogData = require("./data.json")
+const blogData = require("./blogData.json")
+const commentData = require("./commentData.json")
 const addUser = async ()=>{
     try {
         const doc = await User.create([
@@ -51,7 +52,7 @@ const addUser = async ()=>{
         }
 }
 
-const addBlog = async ()=>{
+const addBlogs = async ()=>{
     try {
         const doc = await Blog.create(blogData)
         } catch (e) {
@@ -59,9 +60,18 @@ const addBlog = async ()=>{
         }
 }
 
+const addComments = async ()=>{
+  try {
+      const doc = await Comment.create(commentData)
+      } catch (e) {
+      console.error(e)
+      }
+}
+
 const data = {
     addUser : addUser,
-    addBlog: addBlog
+    addBlogs: addBlogs,
+    addComments: addComments
 }
 
 
