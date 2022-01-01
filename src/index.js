@@ -6,14 +6,16 @@ const mongoose  = require("mongoose")
 const dotenv = require("dotenv")
 
 
+
 //dotenv
 dotenv.config()
 
 // router
 const blogRouter = require("./routers/blog.router")
+const commentRouter = require("./routers/comment.router")
 const authRouter = require('./routers/auth.route')
-// data 
-const data = require('../insertData.js')
+// data
+const insertData = require("../insertData")
 
 
 
@@ -40,7 +42,6 @@ mongoose.connect(process.env.DB_CONNECT,(err)=>{
     }
 })
 
-
 app.get('/',(req,res)=>{
     res.send({data: "hello world"})
 
@@ -54,6 +55,8 @@ app.post('/',(req,res)=>{
 app.use(authRouter)
 // blog router
 app.use('/blog',blogRouter)
+// comment router
+app.use('/comment',commentRouter)
 
 
 
