@@ -41,10 +41,27 @@ const login =  async (req,res) => {
 
     //token
     const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
-    res.header('auth-token',token).status(200).json({"token": token})
+    res.header('auth-token',token).status(200).json({"token": token,"user":{
+        "_id": user._id,
+        "username": user.username,
+        "email": user.email
+    }})
+}
+
+const isAuthenticated = async (req,res) => {
+    try {
+        const doc = await User.findById(req.user._id,["email","username"])
+        res.status(200).json({
+            ...doc._doc,
+            isAuth : true
+        })
+     } catch (e) {
+         res.status(400).json(e)
+     }
 }
 
 
 
 module.exports.register = register
 module.exports.login = login
+module.exports.isAuthenticated = isAuthenticated
