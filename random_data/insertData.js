@@ -1,7 +1,7 @@
 
-const User = require("./src/models/user.model")
-const Blog = require("./src/models/blog.model")
-const Comment = require("./src/models/comment.model")
+const User = require("../src/models/user.model")
+const Blog = require("../src/models/blog.model")
+const Comment = require("../src/models/comment.model")
 const blogData = require("./blogData.json")
 const commentData = require("./commentData.json")
 const addUser = async ()=>{

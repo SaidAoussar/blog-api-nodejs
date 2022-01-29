@@ -14,8 +14,9 @@ dotenv.config()
 const blogRouter = require("./routers/blog.router")
 const commentRouter = require("./routers/comment.router")
 const authRouter = require('./routers/auth.route')
+const userRouter = require('./routers/user.router')
 // data
-const insertData = require("../insertData")
+const insertData = require("../random_data/insertData")
 
 
 
@@ -57,6 +58,8 @@ app.use(authRouter)
 app.use('/blog',blogRouter)
 // comment router
 app.use('/comment',commentRouter)
+// user router
+app.use('/user',userRouter)
 
 
 
@@ -65,7 +68,7 @@ app.use('/comment',commentRouter)
 
 
 
-const port = 3000
+const port = 4000
 app.listen(port,()=>{
     console.log('server runing in '+port)
 })
