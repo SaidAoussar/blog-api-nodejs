@@ -4,7 +4,7 @@ const { getAllBlogs, getOneBlog, createBlog, removeBlog, updateBlog } = require(
 const verify = require("../utils/verify_token")
 
 
-router.get('/',verify,getAllBlogs)
+router.get('/',getAllBlogs)
 router.get('/:id',getOneBlog)
 router.post('/',createBlog)
 router.delete('/:id',removeBlog)
