@@ -63,9 +63,19 @@ const updateBlog = async (req,res)=>{
     }
 }
 
+const allBlogsOfUser = async (req,res) =>{
+    try {
+        const docs = await Blog.find({author: req.params.id})
+        res.status(200).json(docs)
+    } catch (e) {
+       res.status(400).json(e) 
+    }
+}
+
 
 module.exports.getAllBlogs = getAllBlogs
 module.exports.getOneBlog = getOneBlog
 module.exports.createBlog = createBlog
 module.exports.removeBlog = removeBlog
 module.exports.updateBlog = updateBlog
+module.exports.allBlogsOfUser = allBlogsOfUser
