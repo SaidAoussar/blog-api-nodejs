@@ -6,14 +6,14 @@ const {
   createBlog,
   removeBlog,
   updateBlog,
-  allBlogsOfUser,
+  allBlogsOfUser
 } = require("../controllers/blog.controller");
 const { paginatedResults } = require("../utils/pagination");
 const verify = require("../utils/verify_token");
 const Blog = require("../models/blog.model");
 
-router.get("/", getAllBlogs);
-// router.get("/", paginatedResults(Blog), getAllBlogs);
+//router.get("/", getAllBlogs);
+router.get("/", paginatedResults(Blog), getAllBlogs);
 router.get("/:id", getOneBlog);
 router.post("/", verify, createBlog);
 router.delete("/:id", verify, removeBlog);
