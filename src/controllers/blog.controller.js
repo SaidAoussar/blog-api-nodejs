@@ -2,14 +2,14 @@ const mongoose = require("mongoose");
 const Blog = require("../models/blog.model");
 
 const getAllBlogs = async (req, res) => {
-  //res.json(res.paginatedResults);
+  res.json(res.paginatedResults);
 
-  try {
-    const docs = await Blog.find({});
-    res.status(200).json(docs);
-  } catch (e) {
-    console.log(e);
-  }
+  // try {
+  //   const docs = await Blog.find({});
+  //   res.status(200).json(docs);
+  // } catch (e) {
+  //   console.log(e);
+  // }
 
   //   const page =
   //     req.query.page && req.query.page > 0 ? parseInt(req.query.page) : 1;
@@ -57,7 +57,7 @@ const createBlog = async (req, res) => {
       body: req.body.body,
       postTime: Date.now(),
       tags: req.body.tags,
-      author: req.user._id,
+      author: req.user._id
     });
     res.status(200).json(doc);
   } catch (e) {
@@ -69,7 +69,7 @@ const removeBlog = async (req, res) => {
   try {
     const doc = await Blog.findOneAndRemove({
       _id: req.params.id,
-      author: req.user._id,
+      author: req.user._id
     });
     res.status(200).json(doc);
   } catch (e) {
@@ -81,7 +81,7 @@ const updateBlog = async (req, res) => {
     const doc = await Blog.findOneAndUpdate(
       {
         _id: req.body._id,
-        author: req.user._id,
+        author: req.user._id
       },
       req.body,
       { new: true }

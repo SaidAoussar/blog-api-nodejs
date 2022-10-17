@@ -8,14 +8,13 @@ const register = async (req, res) => {
   if (error) return res.status(400).json({ message: error.details[0].message });
 
   //hash password
-
   const salt = await bcrypt.genSalt(10);
   const hashPassword = await bcrypt.hash(req.body.password, salt);
 
   const user = new User({
     username: req.body.username,
     email: req.body.email,
-    password: hashPassword,
+    password: hashPassword
   });
 
   try {
@@ -31,7 +30,9 @@ const login = async (req, res) => {
   if (error) return res.status(400).json({ message: error.details[0].message });
 
   //check email
-  const user = await User.findOne({ email: req.body.email });
+  const user = await User.findOne({ email: req.body.email })
+    .select("+password")
+    .exec();
   if (!user) return res.status(400).json({ message: "Email not exist" });
 
   //check password
@@ -44,7 +45,7 @@ const login = async (req, res) => {
     _id: user._id,
     username: user.username,
     email: user.email,
-    token: token,
+    token: token
   });
   /* blog 2
   res
@@ -66,7 +67,7 @@ const isAuthenticated = async (req, res) => {
     const doc = await User.findById(req.user._id, ["email", "username"]);
     res.status(200).json({
       ...doc._doc,
-      isAuth: true,
+      isAuth: true
     });
   } catch (e) {
     res.status(400).json(e);
