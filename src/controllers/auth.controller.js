@@ -45,7 +45,8 @@ const login = async (req, res) => {
     _id: user._id,
     username: user.username,
     email: user.email,
-    token: token
+    token: token,
+    updatedAt: user.updatedAt
   });
   /* blog 2
   res

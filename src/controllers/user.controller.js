@@ -43,7 +43,8 @@ const updateUser = async (req, res) => {
       ...(req.file && { photo: req.file.filename })
     };
   } else {
-    data = { ...req.body, ...(req.file && { photo: req.file.filename }) };
+    const { password, ...updatedData } = req.body;
+    data = { updatedData, ...(req.file && { photo: req.file.filename }) };
   }
 
   try {
