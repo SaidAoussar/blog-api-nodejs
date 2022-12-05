@@ -4,8 +4,7 @@ const userSchema = new mongoose.Schema(
   {
     username: {
       type: String,
-      required: true,
-      unique: true
+      required: true
     },
     email: {
       type: String,
@@ -21,5 +20,10 @@ const userSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+userSchema.path("email").validate(async (email) => {
+  const emailCount = await mongoose.models.user.countDocuments({ email });
+  return !emailCount;
+}, "Email already exist");
 
 module.exports = mongoose.model("user", userSchema);
